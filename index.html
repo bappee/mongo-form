@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>mongoForm</title>
+    <style>
+   div {
+    text-align: center;
+   }
+   div input{
+     width: 200px;
+     height: 30px;
+   }
+   div button{
+       color: black;
+    background-color: yellow;
+    padding: 5px;
+   }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>This is mongo Form</h1>
+    <input type="text" name="" id="name" placeholder="Your name"><br><br>
+    <input type="number" name="" id="phn" placeholder="Your phone no"><br><br>
+    <input type="text" name="" id="address" placeholder="your address"><br><br>
+    <button id="btn">Submit</button>
+    </div>
+
+    <script>
+        var clicked = document.getElementById("btn")
+        clicked.addEventListener('click', function(){
+            const name =document.getElementById('name').value;
+            const phone =document.getElementById('phn').value;
+            const address=document.getElementById('address').value;
+
+            const sendAll ={name,phone,address}
+            console.log(sendAll);
+          
+            fetch('http://localhost:4000/sentData', {
+        method:'POST',
+        body: JSON.stringify(sendAll),
+        headers:{
+          "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then(res=>res.json())
+      .then(data=>{
+      console.log('info sent',data)
+      })
+   })
+    </script>
+</body>
+</html>
