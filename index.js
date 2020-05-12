@@ -11,12 +11,12 @@ app.use(bodyParser.json());
 const uri = "mongodb+srv://bappeeDb:gkfC5pCOTjalHiks@cluster0-4uwvr.mongodb.net/test?retryWrites=true&w=majority";
 let client = new MongoClient(uri, { useNewUrlParser: true });
 
-//nabazar order form
+
 app.post('/sentData',(req,res)=>{
   const sendAll = req.body;
  
   console.log(sendAll);
-
+  client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("FormDetails").collection("personInfo");
     collection.insertOne(sendAll,(err,result)=>{
