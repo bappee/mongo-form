@@ -16,7 +16,7 @@ app.post('/sentData',(req,res)=>{
   const sendAll = req.body;
  
   console.log(sendAll);
-  client = new MongoClient(uri, { useNewUrlParser: true });
+  
   client.connect(err => {
     const collection = client.db("FormDetails").collection("personInfo");
     collection.insertOne(sendAll,(err,result)=>{
@@ -29,7 +29,7 @@ app.post('/sentData',(req,res)=>{
        }
             
    })
-   client.close();
+   //client.close();
   });
    
 })
